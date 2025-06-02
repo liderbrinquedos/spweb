@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Solicitação de Pagamento</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      margin: 0 auto;
+      max-width: 960px;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .header img {
+      height: 40px;
+    }
+
+    .titulo {
+      font-size: 16px;
+      font-weight: bold;
+      text-align: right;
+      flex-grow: 1;
+      margin-left: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8px;
+      page-break-inside: avoid;
+      font-size: 12px;
+    }
+
+    th, td {
+      border: 1px solid #000;
+      padding: 4px;
+    }
+
+    .valor-rs input {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    input[type="text"], input[type="date"], select, textarea {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-size: 12px;
+    }
+
+    textarea {
+      height: 40px;
+      resize: vertical;
+      font-size: 12px;
+    }
+
+    .footer {
+      margin-top: 10px;
+      text-align: right;
+    }
+
+    .btn-print {
+      padding: 8px 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .linha-divisoria {
+      border-top: 2px dashed #000;
+      margin: 40px 0;
+    }
+
+    @media print {
+      body {
+        padding: 5px;
+        max-width: 100%;
+      }
+      .btn-print {
+        display: none;
+      }
+      table {
+        page-break-inside: avoid;
+      }
+      thead {
+        display: table-header-group;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <img src="https://images.tcdn.com.br/files/727032/themes/115/img/settings/logo-lider2.png " alt="Logo Líder Brinquedos">
+    <div class="titulo">Solicitação de Pagamento</div>
+  </div>
+
+  <table>
+    <tr>
+      <td style="width: 30%;">
+        <strong>Valor R$</strong><br>
+        <input type="text" class="valor-rs" id="valor1" placeholder="Ex: 89,99" oninput="replicar()">
+      </td>
+      <td style="width: 35%;">
+        <strong>Data</strong><br>
+        <input type="date" id="data1" oninput="replicar()">
+      </td>
+      <td style="width: 35%;">
+        <strong>Nro da Solicitação</strong><br>
+        <input type="text" id="numeroSolicitacao1" readonly>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td><strong>EMPRESA:</strong><br>
+        <select id="empresa1" onchange="replicar()">
+          <option value="">Selecione uma empresa</option>
+          <option value="Apolobrinquedos">Apolobrinquedos</option>
+          <option value="Agarradinho">Agarradinho</option>
+          <option value="Gz">Gz</option>
+          <option value="Liderbrinquedos">Liderbrinquedos</option>
+          <option value="Sgaj">Sgaj</option>
+        </select>
+      </td>
+      <td><strong>Nome:</strong><br><input type="text" id="nome1" oninput="replicar()" placeholder="Ex: HOSTINGER"></td>
+      <td><strong>CPF/CNPJ:</strong><br><input type="text" id="cpfCnpj1" oninput="replicar()" placeholder="Ex: 05.506.560/0001-36"></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td colspan="3"><strong>Histórico:</strong><br><textarea id="historico1" oninput="replicar()" placeholder="Descrição..."></textarea></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td><strong>N.º Processo Compras</strong><br><input type="text" id="processo1" oninput="replicar()"></td>
+      <td><strong>Comprador</strong><br><input type="text" id="comprador1" oninput="replicar()"></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td><strong>N.º Documento</strong><br><input type="text" id="documento1" oninput="replicar()"></td>
+      <td><strong>Data Vencimento</strong><br><input type="date" id="vencimento1" oninput="replicar()"></td>
+      <td><strong>Centro de Resultado</strong><br>
+        <select id="centro1" onchange="replicar()">
+          <option value="">Selecione um centro</option>
+          
+ <option value="10100 -DIRETORIA">10100 -DIRETORIA</option>
+<option value="10101 -DIRETORIA">10101 -DIRETORIA</option>
+<option value="10200 -FINANCEIRO">10200 -FINANCEIRO</option>
+<option value="10201 -GERENCIA">10201 -GERENCIA</option>
+<option value="10202 -TESOURARIA">10202 -TESOURARIA</option>
+<option value="10203 -CREDITO E COBRANCA">10203 -CREDITO E COBRANCA</option>
+<option value="10204 -CONTAS A PAGAR">10204 -CONTAS A PAGAR</option>
+<option value="10300 -CONTROLADORIA">10300 -CONTROLADORIA</option>
+<option value="10301 -CONTABIL">10301 -CONTABIL</option>
+<option value="10302 -FISCAL">10302 -FISCAL</option>
+<option value="10303 -CUSTOS E ORCAMENTO">10303 -CUSTOS E ORCAMENTO</option>
+<option value="10400 -TECNOLOGIA DA INFORMACAO">10400 -TECNOLOGIA DA INFORMACAO</option>
+<option value="10401 -DESENVOLVIMENTO E SOFTWARES">10401 -DESENVOLVIMENTO E SOFTWARES</option>
+<option value="10402 -INFRA-ESTRUTURA">10402 -INFRA-ESTRUTURA</option>
+<option value="10500 -JURIDICO">10500 -JURIDICO</option>
+<option value="10501 -GERENCIA">10501 -GERENCIA</option>
+<option value="10502 -LEGALIZACAO">10502 -LEGALIZACAO</option>
+<option value="10503 -PROCESSOS TRABALHISTAS">10503 -PROCESSOS TRABALHISTAS</option>
+<option value="10600 -RECURSOS HUMANOS">10600 -RECURSOS HUMANOS</option>
+<option value="10601 -DEPTO DE PESSOAL">10601 -DEPTO DE PESSOAL</option>
+<option value="10602 -SEST">10602 -SEST</option>
+<option value="10603 -ENFERMARIA">10603 -ENFERMARIA</option>
+<option value="10604 -COZINHA">10604 -COZINHA</option>
+<option value="10605 -RECEPCAO">10605 -RECEPCAO</option>
+<option value="10606 -PORTARIA">10606 -PORTARIA</option>
+<option value="10607 -DESP C/PESSOAL-AGARRADINHO">10607 -DESP C/PESSOAL-AGARRADINHO</option>
+<option value="10700 -RATEIO ENERGIA ELETRICA ADM">10700 -RATEIO ENERGIA ELETRICA ADM</option>
+<option value="10701 -SD DE IMPOSTOS A PAGAR">10701 -SD DE IMPOSTOS A PAGAR</option>
+<option value="10702 -RATEIO COMGAS ADM">10702 -RATEIO COMGAS ADM</option>
+<option value="10703 -RATEIO CONTA DE TELEFONE">10703 -RATEIO CONTA DE TELEFONE</option>
+<option value="10704 -RATEIO INTERNET">10704 -RATEIO INTERNET</option>
+<option value="10705 -RATEIO SABESP">10705 -RATEIO SABESP</option>
+<option value="10706 -ADIANTAMENTOS">10706 -ADIANTAMENTOS</option>
+<option value="10707 -IMPOSTOS E TAXAS">10707 -IMPOSTOS E TAXAS</option>
+<option value="10800 -DESP ADM GERAIS AGARRADINHO">10800 -DESP ADM GERAIS AGARRADINHO</option>
+<option value="10900 -IMPORTACAO DE SALDO ERIS">10900 -IMPORTACAO DE SALDO ERIS</option>
+<option value="10901 -ADMINISTRAÇÃO GERAL">10901 -ADMINISTRAÇÃO GERAL</option>
+<option value="10902 -LIMPEZA">10902 -LIMPEZA</option>
+
+
+
+
+
+
+        </select>
+      </td>
+      <td><strong>Natureza Financeira</strong><br><input type="text" id="natureza1" oninput="replicar()"></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td><strong>Departamento</strong><br><input type="text" id="depto1" oninput="replicar()"></td>
+      <td><strong>Solicitante</strong><br><input type="text" id="solicitante1" oninput="replicar()"></td>
+      <td><strong>Contas a Pagar</strong><br><input type="text" id="contas1" oninput="replicar()"></td>
+      <td><strong>Gerência</strong><br><input type="text" id="gerencia1" oninput="replicar()"></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td><strong>Banco</strong><br><input type="text" id="banco1" oninput="replicar()"></td>
+      <td><strong>Agência / Conta</strong><br><input type="text" id="agencia1" oninput="replicar()"></td>
+      <td><strong>Chave PIX</strong><br><input type="text" id="pix1" oninput="replicar()"></td>
+    </tr>
+    <tr>
+      <td colspan="3"><strong>Favorecido</strong><br><input type="text" id="favorecido1" oninput="replicar()"></td>
+    </tr>
+  </table>
+
+  <div class="linha-divisoria"></div>
+
+  <div class="header">
+    <img src="https://images.tcdn.com.br/files/727032/themes/115/img/settings/logo-lider2.png " alt="Logo Líder Brinquedos">
+    <div class="titulo">Solicitação de Pagamento</div>
+  </div>
+
+  <table>
+    <tr>
+      <td style="width: 30%;">
+        <strong>Valor R$</strong><br>
+        <input type="text" class="valor-rs" id="valor2" readonly>
+      </td>
+      <td style="width: 35%;">
+        <strong>Data</strong><br>
+        <input type="date" id="data2" readonly>
+      </td>
+      <td style="width: 35%;">
+        <strong>Nro da Solicitação</strong><br>
+        <input type="text" id="numeroSolicitacao2" readonly>
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td><strong>EMPRESA:</strong><br>
+        <select id="empresa2" disabled>
+          <option value="">Selecione uma empresa</option>
+          <option value="Apolobrinquedos">Apolobrinquedos</option>
+          <option value="Agarradinho">Agarradinho</option>
+          <option value="Gz">Gz</option>
+          <option value="Liderbrinquedos">Liderbrinquedos</option>
+          <option value="Sgaj">Sgaj</option>
+        </select>
+      </td>
+      <td><strong>Nome:</strong><br><input type="text" id="nome2" readonly placeholder="Ex: HOSTINGER"></td>
+      <td><strong>CPF/CNPJ:</strong><br><input type="text" id="cpfCnpj2" readonly placeholder="Ex: 05.506.560/0001-36"></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td colspan="3"><strong>Histórico:</strong><br><textarea id="historico2" readonly></textarea></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td><strong>N.º Processo Compras</strong><br><input type="text" id="processo2" readonly></td>
+      <td><strong>Comprador</strong><br><input type="text" id="comprador2" readonly></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td><strong>N.º Documento</strong><br><input type="text" id="documento2" readonly></td>
+      <td><strong>Data Vencimento</strong><br><input type="date" id="vencimento2" readonly></td>
+      <td><strong>Centro de Resultado</strong><br>
+        <select id="centro2" disabled>
+         <option value="10100 -DIRETORIA">10100 -DIRETORIA</option>
+<option value="10101 -DIRETORIA">10101 -DIRETORIA</option>
+<option value="10200 -FINANCEIRO">10200 -FINANCEIRO</option>
+<option value="10201 -GERENCIA">10201 -GERENCIA</option>
+<option value="10202 -TESOURARIA">10202 -TESOURARIA</option>
+<option value="10203 -CREDITO E COBRANCA">10203 -CREDITO E COBRANCA</option>
+<option value="10204 -CONTAS A PAGAR">10204 -CONTAS A PAGAR</option>
+<option value="10300 -CONTROLADORIA">10300 -CONTROLADORIA</option>
+<option value="10301 -CONTABIL">10301 -CONTABIL</option>
+<option value="10302 -FISCAL">10302 -FISCAL</option>
+<option value="10303 -CUSTOS E ORCAMENTO">10303 -CUSTOS E ORCAMENTO</option>
+<option value="10400 -TECNOLOGIA DA INFORMACAO">10400 -TECNOLOGIA DA INFORMACAO</option>
+<option value="10401 -DESENVOLVIMENTO E SOFTWARES">10401 -DESENVOLVIMENTO E SOFTWARES</option>
+<option value="10402 -INFRA-ESTRUTURA">10402 -INFRA-ESTRUTURA</option>
+<option value="10500 -JURIDICO">10500 -JURIDICO</option>
+<option value="10501 -GERENCIA">10501 -GERENCIA</option>
+<option value="10502 -LEGALIZACAO">10502 -LEGALIZACAO</option>
+<option value="10503 -PROCESSOS TRABALHISTAS">10503 -PROCESSOS TRABALHISTAS</option>
+<option value="10600 -RECURSOS HUMANOS">10600 -RECURSOS HUMANOS</option>
+<option value="10601 -DEPTO DE PESSOAL">10601 -DEPTO DE PESSOAL</option>
+<option value="10602 -SEST">10602 -SEST</option>
+<option value="10603 -ENFERMARIA">10603 -ENFERMARIA</option>
+<option value="10604 -COZINHA">10604 -COZINHA</option>
+<option value="10605 -RECEPCAO">10605 -RECEPCAO</option>
+<option value="10606 -PORTARIA">10606 -PORTARIA</option>
+<option value="10607 -DESP C/PESSOAL-AGARRADINHO">10607 -DESP C/PESSOAL-AGARRADINHO</option>
+<option value="10700 -RATEIO ENERGIA ELETRICA ADM">10700 -RATEIO ENERGIA ELETRICA ADM</option>
+<option value="10701 -SD DE IMPOSTOS A PAGAR">10701 -SD DE IMPOSTOS A PAGAR</option>
+<option value="10702 -RATEIO COMGAS ADM">10702 -RATEIO COMGAS ADM</option>
+<option value="10703 -RATEIO CONTA DE TELEFONE">10703 -RATEIO CONTA DE TELEFONE</option>
+<option value="10704 -RATEIO INTERNET">10704 -RATEIO INTERNET</option>
+<option value="10705 -RATEIO SABESP">10705 -RATEIO SABESP</option>
+<option value="10706 -ADIANTAMENTOS">10706 -ADIANTAMENTOS</option>
+<option value="10707 -IMPOSTOS E TAXAS">10707 -IMPOSTOS E TAXAS</option>
+<option value="10800 -DESP ADM GERAIS AGARRADINHO">10800 -DESP ADM GERAIS AGARRADINHO</option>
+<option value="10900 -IMPORTACAO DE SALDO ERIS">10900 -IMPORTACAO DE SALDO ERIS</option>
+<option value="10901 -ADMINISTRAÇÃO GERAL">10901 -ADMINISTRAÇÃO GERAL</option>
+<option value="10902 -LIMPEZA">10902 -LIMPEZA</option>
+
+
+
+
+
+
+
+
+
+
+
+        </select>
+      </td>
+      <td><strong>Natureza Financeira</strong><br><input type="text" id="natureza2" readonly></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td><strong>Departamento</strong><br><input type="text" id="depto2" readonly></td>
+      <td><strong>Solicitante</strong><br><input type="text" id="solicitante2" readonly></td>
+      <td><strong>Contas a Pagar</strong><br><input type="text" id="contas2" readonly></td>
+      <td><strong>Gerência</strong><br><input type="text" id="gerencia2" readonly></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td><strong>Banco</strong><br><input type="text" id="banco2" readonly></td>
+      <td><strong>Agência / Conta</strong><br><input type="text" id="agencia2" readonly></td>
+      <td><strong>Chave PIX</strong><br><input type="text" id="pix2" readonly></td>
+    </tr>
+    <tr>
+      <td colspan="3"><strong>Favorecido</strong><br><input type="text" id="favorecido2" readonly></td>
+    </tr>
+  </table>
+
+  <div class="footer">
+    <button class="btn-print" onclick="window.print()">🖨️ Imprimir</button>
+  </div>
+
+  <script>
+    // Gera numero automatico
+    function gerarNumeroSolicitacao() {
+      const now = new Date();
+      const dia = String(now.getDate()).padStart(2, '0');
+      const mes = String(now.getMonth() + 1).padStart(2, '0');
+      const ano = now.getFullYear();
+      const hora = String(now.getHours()).padStart(2, '0');
+      const minuto = String(now.getMinutes()).padStart(2, '0');
+
+      return `${dia}${mes}${ano}${hora}${minuto}`;
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const numero = gerarNumeroSolicitacao();
+      document.getElementById("numeroSolicitacao1").value = numero;
+      document.getElementById("numeroSolicitacao2").value = numero;
+    });
+
+    // Função de replicação
+    function replicar() {
+      document.getElementById("valor2").value = document.getElementById("valor1").value;
+      document.getElementById("data2").value = document.getElementById("data1").value;
+      document.getElementById("nome2").value = document.getElementById("nome1").value;
+      document.getElementById("cpfCnpj2").value = document.getElementById("cpfCnpj1").value;
+      document.getElementById("historico2").value = document.getElementById("historico1").value;
+      document.getElementById("processo2").value = document.getElementById("processo1").value;
+      document.getElementById("comprador2").value = document.getElementById("comprador1").value;
+      document.getElementById("documento2").value = document.getElementById("documento1").value;
+      document.getElementById("vencimento2").value = document.getElementById("vencimento1").value;
+      // document.getElementById("emissao2").value = document.getElementById("emissao1").value; // This ID doesn't exist in the HTML
+      document.getElementById("centro2").value = document.getElementById("centro1").value; // Replicate the select value
+      document.getElementById("natureza2").value = document.getElementById("natureza1").value;
+      document.getElementById("depto2").value = document.getElementById("depto1").value;
+      document.getElementById("solicitante2").value = document.getElementById("solicitante1").value;
+      document.getElementById("contas2").value = document.getElementById("contas1").value;
+      document.getElementById("gerencia2").value = document.getElementById("gerencia1").value;
+      document.getElementById("banco2").value = document.getElementById("banco1").value;
+      document.getElementById("agencia2").value = document.getElementById("agencia1").value;
+      document.getElementById("pix2").value = document.getElementById("pix1").value;
+      document.getElementById("favorecido2").value = document.getElementById("favorecido1").value;
+
+      // Empresa precisa ser replicada no select
+      document.getElementById("empresa2").value = document.getElementById("empresa1").value;
+    }
+  </script>
+
+</body>
+</html>
